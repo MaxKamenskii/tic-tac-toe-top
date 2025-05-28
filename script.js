@@ -19,7 +19,9 @@ function Gameboard() {
     const markBoard = (row, column, player) => {
         board[row][column].addMark(player);
         }
-    return {printBoard, markBoard}
+
+    const getCell = (row, column) => board[row][column].getValue()
+    return {getBoard, printBoard, markBoard, getCell}
 }
 
 
@@ -56,6 +58,8 @@ function GameController(playerOneName = 'Player One',
         }
     ];
 
+    let theCell;
+
     let activePlayer = players[0];
 
     const switchPlayerTurn = () => {
@@ -69,12 +73,19 @@ function GameController(playerOneName = 'Player One',
     }
 
     const playRound = (row, column) => {
-        console.log(`${getActivePlayer().name} marks raw ${row} and column ${column}...`)
-        board.markBoard(row, column, getActivePlayer().mark)
+        theCell = board.getCell(row, column)
+        console.log(`Get cell is: ${theCell}`)
+        if(theCell === 0) {
+            console.log(`${getActivePlayer().name} marks raw ${row} and column ${column}...`)
+            board.markBoard(row, column, getActivePlayer().mark)
 
-    // Switch player turn
-    switchPlayerTurn();
-    printNewRound();
+                // Switch player turn
+                switchPlayerTurn();
+                printNewRound();
+        } else {
+            console.log('The cell is occupied by another player, try again')
+            printNewRound();
+        }  
 };
 
 printNewRound();
