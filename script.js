@@ -142,6 +142,7 @@ function GameController(playerOneName = 'Player One',
         console.log(`${getActivePlayer().name}'s turn`)
     }
 
+    let markedCells = 0;
 
     const playRound = (row, column) => {
         
@@ -149,10 +150,16 @@ function GameController(playerOneName = 'Player One',
         console.log(`Get cell is: ${theCell}`)
         if(theCell === 0) {
             console.log(`${getActivePlayer().name} marks raw ${row} and column ${column}...`)
+            markedCells++;
+            console.log(`MarkedCells: ${markedCells}`)
             board.markBoard(row, column, getActivePlayer().mark)
                 if(board.checkWinner(activePlayer.name)){
                     console.log("Game over");
                     return;
+                } else if(markedCells === 9) {
+                    // Switch player turn
+                    console.log("Game is tied");
+                    return; 
                 } else {
                     // Switch player turn
                     switchPlayerTurn();
