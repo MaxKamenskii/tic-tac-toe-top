@@ -80,3 +80,45 @@ h2{
     justify-content: center;
     color: var(--text-color)
 }
+
+.modal {
+    width: 300px;
+    height: 400px;
+    background-color: #787155;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.playerPic {
+    height: 50px;
+}
+
+.startButton {
+    color: var(--text-color);
+    height: 50px;
+    width: auto;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    transition: 200ms;
+}
+.startButton:hover {
+        scale: 1.1;
+        cursor: pointer;
+}
+.restartButton {
+    color: var(--text-color);
+    height: 50px;
+    width: auto;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: rgb(226, 49, 43);
+    transition: 200ms;
+}
+.restartButton:hover {
+        scale: 1.1;
+        cursor: pointer;
+}

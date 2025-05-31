@@ -184,11 +184,15 @@ printNewRound();
 };
 
 
+
 function screenController() {
-    const game = GameController();
+    let game = GameController();
     const playerTurnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.container')
 
+    const startButton = document.querySelector("#startButton");
+    const restartButton = document.querySelector("#restartButton");
+    
     const updateScreen = () => {
         // clear the board
         boardDiv.textContent = "";
@@ -228,7 +232,8 @@ function screenController() {
     }
 boardDiv.addEventListener("click", clickHandlerBoard);
 
-updateScreen()
+startButton.addEventListener("click", updateScreen)
+
 
 }
 screenController()
