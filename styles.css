@@ -11,6 +11,7 @@ button {
     --text-color: #b3b3b3;
     --box-color-hover: #525252;
     --box-shadow: #787155;
+    --title-text-color: #ff7b00;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-content: center;
+    /* align-items: center; */
 }
 .container {
     place-items: center;
@@ -61,7 +62,21 @@ body {
     display: none;
 }
 
-h1{
-    background-color: #3f3f3f;
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+h1 {
+    display: flex;
+    color: var(--title-text-color);
+    font-family: 'special_gothic_expanded_oneRg', serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    justify-content: center;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
     color: var(--text-color)
 }

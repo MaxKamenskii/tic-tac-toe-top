@@ -20,7 +20,9 @@ function Gameboard() {
         board[row][column].addMark(player);
         }
 
-    const getCell = (row, column) => board[row][column].getValue()
+    let getCell = (row, column) => {
+        return board[row][column].getValue()
+    }
 
     const checkWinner = (playerName) => {
         let firstRow = [board[0][0].getValue(), board[0][1].getValue(), board[0][2].getValue()];
@@ -106,11 +108,6 @@ function Cell() {
     };
 }
 
-// function checkWinner () {
-//     // const gameboard = Gameboard()
-
-//     const board =  
-// }
 
 function GameController(playerOneName = 'Player One',
     playerTwoName = 'Player Two') {
@@ -151,8 +148,11 @@ function GameController(playerOneName = 'Player One',
         if(theCell === 0) {
             console.log(`${getActivePlayer().name} marks raw ${row} and column ${column}...`)
             markedCells++;
+            
             console.log(`MarkedCells: ${markedCells}`)
             board.markBoard(row, column, getActivePlayer().mark)
+            theCell = board.getCell(row, column)
+            console.log(`Now the cell is: ${theCell}`)
                 if(board.checkWinner(activePlayer.name)){
                     console.log("Game over");
                     return;
@@ -162,11 +162,12 @@ function GameController(playerOneName = 'Player One',
                     return;
                 } else {
                     // Switch player turn
+                    
                     switchPlayerTurn();
                     printNewRound(); 
                 }
 
-        } else {
+        } else if (theCell === (1 || 2)) {
             console.log('The cell is occupied, try again')
             printNewRound();
         }  
@@ -220,6 +221,7 @@ function screenController() {
     function clickHandlerBoard(e) {
         const selectedRow = e.target.dataset.row
         const selectedColumn = e.target.dataset.column
+        if (!selectedColumn && !selectedRow) return;
 
         game.playRound(selectedRow, selectedColumn);
         updateScreen();
@@ -231,9 +233,6 @@ updateScreen()
 }
 screenController()
 
-// const game = GameController();
-
-//Start the game via screenController()
 
 
 
