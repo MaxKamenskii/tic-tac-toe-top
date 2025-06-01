@@ -1,4 +1,7 @@
 // this function provides all of the data needed for the game controller
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
 function Gameboard() {
     const rows = 3;
     const columns = 3;
@@ -9,6 +12,20 @@ function Gameboard() {
         for (let j = 0; j < columns; j++) {
             board[i].push(Cell());
         }
+    }
+
+    const resetBoard = () => {
+        const restartButton = document.querySelectorAll(".reButton")
+        restartButton.forEach(function(node) {
+            node.addEventListener("click", (e) => {
+            for(let i = 0; i < board.length; i++){
+                board[i] = "";
+                for(let j = 0; j<board[i].length; j++){
+                    board[j] = "";
+                }
+            }
+        })
+        })
     }
     const getBoard = () => board;
 
@@ -24,6 +41,8 @@ function Gameboard() {
         return board[row][column].getValue()
     }
 
+
+
     const checkWinner = (playerName) => {
         let firstRow = [board[0][0].getValue(), board[0][1].getValue(), board[0][2].getValue()];
         let secondRow = [board[1][0].getValue(), board[1][1].getValue(), board[1][2].getValue()];
@@ -35,59 +54,95 @@ function Gameboard() {
         let thirdColumn = [board[0][2].getValue(), board[1][2].getValue(), board[2][2].getValue()];
         // Player 1 conditions
         if(firstRow.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the first row`)
+            alert(`${playerName} wins  by marking the first row`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(secondRow.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the second row`)
+            alert(`${playerName} wins  by marking the second row`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(thirdRow.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the third row`)
+            alert(`${playerName} wins  by marking the third row`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(rightDiagonal.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the right diagonal`)
+            alert(`${playerName} wins  by marking the right diagonal`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(leftDiagonal.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the left diagonal`)
+            alert(`${playerName} wins  by marking the left diagonal`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(firstColumn.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the first column`)
+            alert(`${playerName} wins  by marking the first column`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(secondColumn.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the second column`)
+            alert(`${playerName} wins  by marking the second column`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(thirdColumn.toString() === "1,1,1") {
-            console.log(`${playerName} wins  by marking the third column`)
+            alert(`${playerName} wins  by marking the third column`)
+            playerOneScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         }
         // Player 2 conditions
         else if(firstRow.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the first row`)
+            alert(`${playerName} wins  by marking the first row`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(secondRow.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the second row`)
+            alert(`${playerName} wins  by marking the second row`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(thirdRow.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the third row`)
+            alert(`${playerName} wins  by marking the third row`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(rightDiagonal.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the right diagonal`)
+            alert(`${playerName} wins  by marking the right diagonal`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(leftDiagonal.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the left diagonal`)
+            alert(`${playerName} wins  by marking the left diagonal`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(firstColumn.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the first column`)
+            alert(`${playerName} wins  by marking the first column`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(secondColumn.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the second column`)
+            alert(`${playerName} wins  by marking the second column`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         } else if(thirdColumn.toString() === "2,2,2") {
-            console.log(`${playerName} wins  by marking the third column`)
+            alert(`${playerName} wins  by marking the third column`)
+            playerTwoScore++;
+            p1score.innerHTML = playerOneScore;
             return true;
         }
     }
+    const p1score = document.getElementById('p1score');
+    const p2score = document.getElementById('p2score');
+    p1score.innerHTML = playerOneScore;
+    p2score.innerHTML = playerTwoScore;
 
-    return {getBoard, printBoard, markBoard, getCell, checkWinner}
+    return {getBoard, printBoard, markBoard, getCell, checkWinner, resetBoard}
 }
 
 
@@ -158,7 +213,7 @@ function GameController(playerOneName = 'Player One',
                     return;
                 } else if(markedCells === 9) {
                     // Switch player turn
-                    console.log("Game is tied");
+                    alert("Game is tied");
                     return;
                 } else {
                     // Switch player turn
@@ -178,7 +233,8 @@ printNewRound();
   return {
     playRound,
     getActivePlayer,
-    getBoard: board.getBoard
+    getBoard: board.getBoard,
+    resetBoard: board.resetBoard
   };
 
 };
@@ -186,12 +242,29 @@ printNewRound();
 
 
 function screenController() {
-    let game = GameController();
+    const startGame = () => {
+        let game = GameController()
+        return game;
+    }
+
+    let game = startGame();
     const playerTurnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.container')
 
     const startButton = document.querySelector("#startButton");
     const restartButton = document.querySelector("#restartButton");
+    const reButtons = document.querySelectorAll('.reButton')
+    reButtons.forEach(function(node) {
+            node.addEventListener("click", (e) => {
+                resetTheBoard()
+            })
+        })
+
+    const resetTheBoard = () => {
+        game = startGame()
+    }
+
+    restartButton.addEventListener("click", resetTheBoard)
     
     const updateScreen = () => {
         // clear the board
@@ -232,7 +305,17 @@ function screenController() {
     }
 boardDiv.addEventListener("click", clickHandlerBoard);
 
-startButton.addEventListener("click", updateScreen)
+startButton.addEventListener("click", () => {
+    const container = document.querySelector('.container')
+    container.classList.add("active")
+    updateScreen()
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    startGame()
+
+})
+
+restartButton.addEventListener('click', updateScreen)
 
 
 }
