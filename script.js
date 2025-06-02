@@ -234,16 +234,20 @@ function GameController(playerOneName = player1Name,
     const playRound = (row, column) => {
         theCell = board.getCell(row, column)
         console.log(`Get cell is: ${theCell}`)
+        const turnBox = document.querySelector(".turn")
+        const winnerBox = document.querySelector(".winner")
         if(theCell === 0) {
             console.log(`${getActivePlayer().name} marks raw ${row} and column ${column}...`)
             markedCells++;
-            
             console.log(`MarkedCells: ${markedCells}`)
             board.markBoard(row, column, getActivePlayer().mark)
             theCell = board.getCell(row, column)
             console.log(`Now the cell is: ${theCell}`)
                 if(board.checkWinner(activePlayer.name)){
                     console.log("Game over");
+                    turnBox.style.display = "none"
+                    winnerBox.style.display = "inline"
+                    winnerBox.innerHTML = `Yeah! ${activePlayer.name} has won!`
                     return;
                 } else if(markedCells === 9) {
                     // Switch player turn
@@ -313,7 +317,6 @@ function screenController() {
             row.forEach((cell, columnIndex) => {
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
-
                 cellButton.dataset.row = rowIndex;
                 cellButton.dataset.column = columnIndex;
                 if(cell.getValue() === 1){
@@ -350,8 +353,13 @@ submitButton.addEventListener("click", () => {
 })
 
 restartButton.addEventListener('click', () => {
-    const container = document.querySelector('.container')
+    const container = document.querySelector('.container');
     container.style.pointerEvents = 'auto';
+    const turnBox = document.querySelector(".turn");
+    const winnerBox = document.querySelector(".winner");
+    winnerBox.style.display = "none";
+    winnerBox.innerHTML = "";
+    turnBox.style.display = "inline";
     updateScreen()
 })
 
