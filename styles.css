@@ -41,6 +41,7 @@ body {
 }
 .scores.active {
     display: flex;
+    justify-content: center;
 }
 .score {
     color: var(--main-text-color);
