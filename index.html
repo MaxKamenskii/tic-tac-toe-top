@@ -13,18 +13,40 @@
         <h1 class="title">Tic-Tac-Toe</h1>
         <h2 class="turn"></h2>
         <div class="scores">
-            <span class="score">Player 1 Score: </span><div class="score" id="p1score"></div>
-            <span class="score">Player 2 Score: </span><div class="score" id="p2score"></div>
+            <div class="playerDiv">
+                <div class="score" id="playerOneName">Player 1</div>
+                <div>Score:</div>
+                <div class="score" id="p1score"></div>
+            </div>
+            <div class="playerDiv">
+                <div class="score" id="playerTwoName">Player 2</div><span> Score: </span>
+                <div class="score" id="p2score"></div>
+            </div>
         </div>
         <div class="buttonsDiv">
-            <button class="reButton startButton" id="startButton">Start New Game</button>
+            <button class="startButton" id="startButton">Start New Game</button>
             <button class="reButton restartButton" id="restartButton">Restart Match</button>
         </div>
     </div>
     <div class="content">
         <div class="container">
-
+            <div class="announcement" id="announcement"></div>
         </div>
+        
     </div>
+    <dialog class="modal" id="modal">
+        <div class="modalDiv">
+            <div class="title">
+            Name Your Players
+            </div>
+            <form>
+                 <label for="player1"><img class="playerPic" src="assets/x.svg">Player One</label>
+                <input id="player1" type="text" placeholder="Enter Text">
+                <label for="player2"><img class="playerPic" src="assets/circle.svg">Player Two</label>
+                <input id="player2" type="text" placeholder="Enter Text">
+                <button type="button" class="reButton submitButton" id="submitButton">Submit</button>
+            </form>
+        </div>
+    </dialog>
 </body>
 </html>
